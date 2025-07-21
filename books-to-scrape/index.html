@@ -21,6 +21,22 @@
       <option value="Out of stock">Out of stock</option>
     </select>
 
+    <div id="price-filter-controls">
+      <label for="priceOperator">Price:</label>
+      <select id="priceOperator">
+        <option value="">--</option>
+        <option value="gt">&gt; (greater than)</option>
+        <option value="lt">&lt; (less than)</option>
+      </select>
+      <input
+        type="number"
+        id="priceValue"
+        placeholder="Enter price"
+        min="0"
+        step="0.01"
+      />
+    </div>
+
     <!-- 📊 Table -->
     <table id="books-table" class="display" style="width: 100%">
       <thead>
