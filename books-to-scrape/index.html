@@ -8,51 +8,80 @@
       rel="stylesheet"
       href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <h1>📚 Scraped Book Data</h1>
+  <body class="transition-colors duration-300 dark:bg-gray-900 dark:text-white">
+    <div class="container mx-auto p-6">
+      <h1 class="text-2xl font-bold mb-4">📚 Book Scraper Dashboard</h1>
 
-    <!-- 🗂️ Availability Filter -->
-    <label for="availabilityFilter">Filter by availability: </label>
-    <select id="availabilityFilter">
-      <option value="">Show All</option>
-      <option value="In stock">In stock</option>
-      <option value="Out of stock">Out of stock</option>
-    </select>
+      <!-- Filters -->
+      <div class="flex flex-wrap items-center gap-4 mb-4">
+        <label class="flex items-center gap-2">
+          <span class="font-semibold">Availability:</span>
+          <select id="availabilityFilter" class="border rounded p-1">
+            <option value="">All</option>
+            <option value="In stock">In stock</option>
+            <option value="Out of stock">Out of stock</option>
+          </select>
+        </label>
 
-    <div id="price-filter-controls">
-      <label for="priceOperator">Price:</label>
-      <select id="priceOperator">
-        <option value="">--</option>
-        <option value="gt">&gt; (greater than)</option>
-        <option value="lt">&lt; (less than)</option>
-      </select>
-      <input
-        type="number"
-        id="priceValue"
-        placeholder="Enter price"
-        min="0"
-        step="0.01"
-      />
+        <label class="flex items-center gap-2">
+          <span class="font-semibold">Price:</span>
+          <select id="priceOperator" class="border rounded p-1">
+            <option value="gt">&gt;</option>
+            <option value="lt">&lt;</option>
+          </select>
+          <input
+            type="number"
+            id="priceValue"
+            class="border rounded p-1 w-24"
+            placeholder="e.g. 10"
+            step="0.01"
+          />
+        </label>
+
+        <button
+          id="clearFilters"
+          class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+        >
+          Clear Filters
+        </button>
+
+        <button
+          id="darkModeToggle"
+          class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 dark:text-black transition"
+        >
+          Toggle Dark Mode
+        </button>
+      </div>
+
+      <!-- Data Table -->
+      <div class="overflow-x-auto">
+        <table
+          id="books-table"
+          class="min-w-full table-auto border border-gray-300"
+        >
+          <thead class="bg-gray-200 text-gray-800 font-semibold">
+            <tr>
+              <th class="px-4 py-2 border">Title</th>
+              <th class="px-4 py-2 border">Price</th>
+              <th class="px-4 py-2 border">Availability</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
-
-    <!-- 📊 Table -->
-    <table id="books-table" class="display" style="width: 100%">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Price</th>
-          <th>Availability</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
 
     <!-- ✅ Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>

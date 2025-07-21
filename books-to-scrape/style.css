@@ -21,3 +21,7 @@ h1 {
 #availabilityFilter {
   margin-bottom: 10px;
 }
+/* Add in a <style> tag or CSS file */
+.dataTables_filter input {
+  @apply border rounded px-2 py-1;
+}
